@@ -82,12 +82,16 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
  * Animate
  */
 const clock = new THREE.Clock();
+let time = 0;
 
 const tick = () => {
-  const elapsedTime = clock.getElapsedTime();
+  const elapsedTime = clock.getElapsedTime() * 0.5; // multiply elapsed time by 0.5 to slow down animation speed
 
   // Update controls
   controls.update();
+
+  // Update mesh position
+  mesh.rotation.y = elapsedTime;
 
   // Render
   renderer.render(scene, camera);

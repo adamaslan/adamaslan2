@@ -42,21 +42,21 @@ let sketch2 = (p) => {
 
   p.setup = function () {
     let canvas = p.createCanvas(p.windowWidth * 0.25, p.windowHeight * 0.25);
-    canvas.position(p.windowWidth * 0.75, p.windowHeight * 0.75);
+    canvas.position(p.windowWidth * 0.6, p.windowHeight * 0.75);
     p.stroke(255);
     b = p.height / 2;
     p.textAlign(p.CENTER, p.CENTER);
-    p.textSize(28);
+    p.textSize(20);
   };
 
   p.draw = function () {
-    p.background(51);
+    p.background(10);
     p.line(0, b, p.width, b);
     b = b - 0.5;
     if (b < 0) {
       b = p.height;
     }
-    p.text("Sketch 2", p.width / 2, p.height / 2);
+    p.text("together, we are going all the way up!", p.width / 2, p.height / 2);
   };
 };
 
