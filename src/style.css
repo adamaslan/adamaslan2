@@ -7,7 +7,30 @@ html,
 body {
   overflow: hidden;
 }
-
+.App {
+  position: fixed;
+  top: 0%;
+  left: 65%;
+  outline: none;
+}
+.App1 {
+  position: fixed;
+  top: 7%;
+  left: 65%;
+  outline: none;
+}
+.App2 {
+  position: fixed;
+  top: 14%;
+  left: 65%;
+  outline: none;
+}
+.App3 {
+  position: fixed;
+  top: 21%;
+  left: 65%;
+  outline: none;
+}
 .webgl {
   position: fixed;
   top: 0;
