@@ -21,6 +21,7 @@ let sketch = (p) => {
     let textY = a;
     for (let i = 0; i < textString.length; i++) {
       let letter = textString.charAt(i);
+      p.fill(255, 204, 0);
       p.text(letter, textX, textY);
       textY += p.textSize();
     }
@@ -46,6 +47,7 @@ let sketch2 = (p) => {
     p.stroke(255);
     b = p.height / 2;
     p.textAlign(p.CENTER, p.CENTER);
+    p.fill(255, 125, 0);
     p.textSize(20);
   };
 
