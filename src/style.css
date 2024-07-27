@@ -8,57 +8,25 @@ body {
   overflow: hidden;
 }
 
-.App, .App1, .App2, .App3, .webgl, .funtext, .funtext2 {
-  position: fixed;
+.App, .App1, .App2, .App3, .webgl, .funtext, .funtext2, .script1, .script2, .script3, .script4 {
+  position: relative;
   outline: none;
   background: linear-gradient(90deg, #ff7e5f, #feb47b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   animation: funTextAnimation 2s infinite;
+  margin-bottom: 20px;
 }
 
-.App {
-  top: 0%;
-  left: 45%;
+.App, .App1, .App2, .App3, .webgl, .funtext, .funtext2 {
   font-size: 3rem;
 }
 
-.App1 {
-  top: 7%;
-  left: 45%;
-  font-size: 3rem;
-}
-
-.App2 {
-  top: 14%;
-  left: 45%;
-  font-size: 3rem;
-}
-
-.App3 {
-  font-size: 3rem;
-  top: 21%;
-
-  left: 45%;
-}
-
-.webgl {
-  top: 0;
-  left: 0;
-  font-size: 3rem;
-}
-
-.funtext {
-  bottom: 50%;
-  right: 0%;
-  font-size: 3rem;
-}
-
-.funtext2 {
-  bottom: 20%;
-  right: 85%;
-  font-size: 3rem;
+@media (max-width: 767px) {
+  .App, .App1, .App2, .App3, .webgl, .funtext, .funtext2 {
+    font-size: 1.5rem;
+  }
 }
 
 @keyframes funTextAnimation {
