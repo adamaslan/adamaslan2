@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+body {
+  display: flex;
+  flex-direction: column; /* Optional: Set the main axis direction */
+}
+
 html,
 body {
   overflow: hidden;
