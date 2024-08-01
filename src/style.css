@@ -1,101 +1,83 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column; /* Optional: Set the main axis direction */
-}
-
-html,
-body {
-  overflow: hidden;
-}
-
+/* Desktop layout (3x2 grid) */
 .container {
-  position: relative;
-  margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    grid-template-rows: repeat(2, 1fr); /* Two rows */
+    grid-gap: 10px;
 }
 
-.webgl-container {
-  width: 100%;
-  height: 300px; /* Adjust as needed */
+/* Place the sketches and apps in their respective areas */
+.sketch1-container {
+    grid-row: 2;
+    grid-column: 1; /* First column */
 }
 
-.sketch1-container, .sketch2-container {
-  width: 100%;
-  height: 300px; /* Adjust as needed */
+.sketch2-container {
+    grid-row: 2;
+    grid-column: 3; /* Third column */
 }
+
+/* Mobile layout (single column) */
+@media (max-width: 767px) {
+    .container {
+        grid-template-columns: 1fr; /* Single column */
+        grid-template-rows: auto; /* Reset rows */
+    }
+}
+
+
+
 
 .App, .App1, .App2, .App3, .funtext, .funtext2 {
-  position: fixed;
-  outline: none;
-  background: linear-gradient(90deg, #ff7e5f, #feb47b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  animation: funTextAnimation 2s infinite;
-}
-
-.App {
-  top: 0%;
-  left: 45%;
-  font-size: 3rem;
-}
-
-.App1 {
-  top: 7%;
-  left: 45%;
-  font-size: 3rem;
-}
-
-.App2 {
-  top: 14%;
-  left: 45%;
-  font-size: 3rem;
-}
-
-.App3 {
-  top: 21%;
-  left: 45%;
-  font-size: 3rem;
-}
-
-.funtext {
-  bottom: 50%;
-  right: 0%;
-  font-size: 3rem;
-}
-
-.funtext2 {
-  bottom: 20%;
-  right: 85%;
-  font-size: 3rem;
-}
-
-@keyframes funTextAnimation {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-/* Mobile styles */
-@media (max-width: 767px) {
-  .App, .App1, .App2, .App3, .funtext, .funtext2 {
-    position: relative;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    left: 0;
-    top: 0;
+    /* position: fixed; */
+    outline: none;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    animation: funTextAnimation 2s infinite;
+  }
+  
+  .App {
+    top: 0%;
+    left: 45%;
+    font-size: 3rem;
+  }
+  
+  .App1 {
+    top: 7%;
+    left: 45%;
+    font-size: 3rem;
+  }
+  
+  .App2 {
+    top: 14%;
+    left: 45%;
+    font-size: 3rem;
+  }
+  
+  .App3 {
+    top: 21%;
+    left: 45%;
+    font-size: 3rem;
   }
 
-  .funtext, .funtext2 {
-    right: 0;
-  }
 
-  .container {
-    width: 100%;
-    height: auto;
+  .funtext {
+    bottom: 50%;
+    right: 0%;
+    font-size: 3rem;
   }
-}
+  
+  .funtext2 {
+    bottom: 20%;
+    right: 85%;
+    font-size: 3rem;
+  }
+  
+  @keyframes funTextAnimation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+  

@@ -75,7 +75,7 @@ controls.enableDamping = true;
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
-renderer.setSize(sizes.width, sizes.height);
+renderer.setSize(sizes.width/2, sizes.height/2);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 /**
