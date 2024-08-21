@@ -14,7 +14,7 @@ const positionsArray = new Float32Array(count * 3 * 3);
 for (let i = 0; i < count * 3 * 3; i++) {
   positionsArray[i] = (Math.random() - 0.5) * 4;
 }
-const positionsAttribute = new THREE.BufferAttribute(positionsArray, 2);
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3);
 geometry.setAttribute("position", positionsAttribute);
 
 const material = new THREE.MeshBasicMaterial({
@@ -34,52 +34,30 @@ const sizes = {
   mobileHeight: window.innerHeight * 0.1, // 1/10 of window height
   aspect: 0,
 };
-// Resize event listener
-window.addEventListener("resize", () => {
-  // Update sizes
-  sizes.width = window.innerWidth;
-  sizes.height = window.innerHeight;
 
-  // Update desktop/mobile sizes
-  if (window.innerWidth > 768) {
-    // Desktop
-    sizes.desktopWidth = window.innerWidth * 0.2;
-    sizes.mobileWidth = window.innerWidth * 0.9;
-    sizes.mobileHeight = window.innerHeight * 0.1;
-    sizes.aspect = sizes.desktopWidth / (window.innerHeight * 0.1);
-  } else {
-    // Mobile
-    sizes.desktopWidth = window.innerWidth * 0.2;
-    sizes.mobileWidth = window.innerWidth * 0.9;
-    sizes.mobileHeight = window.innerHeight * 0.1;
-    sizes.aspect = sizes.mobileWidth / sizes.mobileHeight;
-  }
+// Determine initial screen size
+if (window.innerWidth > 768) {
+  // Desktop
+  sizes.aspect = sizes.desktopWidth / (window.innerHeight * 0.1);
+} else {
+  // Mobile
+  sizes.aspect = sizes.mobileWidth / sizes.mobileHeight;
+}
 
 // Camera
-camera.aspect = sizes.aspect;
-camera.updateProjectionMatrix();
-
-const camera = new THREE.PerspectiveCamera(70, sizes.width / sizes.height, 1, 1000);
+const camera = new THREE.PerspectiveCamera(70, sizes.aspect, 1, 1000);
 camera.position.z = 3;
-  // Update camera
-
-
 scene.add(camera);
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 
-
-
-
-
 // Renderer
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 
-// Initial render
 if (window.innerWidth > 768) {
   // Desktop
   renderer.setSize(sizes.desktopWidth, window.innerHeight * 0.1);
@@ -87,7 +65,9 @@ if (window.innerWidth > 768) {
   // Mobile
   renderer.setSize(sizes.mobileWidth, sizes.mobileHeight);
 }
+
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
 // Animate
 const clock = new THREE.Clock();
 
