@@ -4,6 +4,9 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 
+// 2D Context
+const context = canvas.getContext('2d');
+
 // Scene
 const scene = new THREE.Scene();
 
@@ -26,23 +29,11 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
 // Sizes
-// const sizes = {
-//   width: window.innerWidth,
-//   height: window.innerHeight,
-//   desktopWidth: window.innerWidth * 0.2, // 1/5 of window width
-//   mobileWidth: window.innerWidth * 0.9, // 90% of window width
-//   mobileHeight: window.innerHeight * 0.1, // 1/10 of window height
-//   aspect: 0,
-// };
-
-// Determine initial screen size
-// if (window.innerWidth > 768) {
-//   // Desktop
-//   sizes.aspect = sizes.desktopWidth / (window.innerHeight * 0.1);
-// } else {
-//   // Mobile
-//   sizes.aspect = sizes.mobileWidth / sizes.mobileHeight;
-// }
+const sizes = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+  aspect: window.innerWidth / window.innerHeight,
+};
 
 // Camera
 const camera = new THREE.PerspectiveCamera(70, sizes.aspect, 1, 1000);
@@ -57,25 +48,27 @@ controls.enableDamping = true;
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
-
-// if (window.innerWidth > 768) {
-//   // Desktop
-//   renderer.setSize(sizes.desktopWidth, window.innerHeight * 0.1);
-// } else {
-//   // Mobile
-//   renderer.setSize(sizes.mobileWidth, sizes.mobileHeight);
-// }
-
-// renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // Animate
 const clock = new THREE.Clock();
 
-function animate(time) {
-  time *= 0.001;
-  // Other animation logic...
+function animate() {
+  const elapsedTime = clock.getElapsedTime();
+
+  // Clear the canvas for 2D context
+  context.clearRect(0, 0, sizes.width, sizes.height);
+
+  // 2D Drawing (example)
+  context.fillStyle = 'rgba(255, 255, 255, 0.5)';
+  context.fillRect(10, 10, 150, 100);
+
+  // 3D Rendering
+  controls.update();
   renderer.render(scene, camera);
+
   requestAnimationFrame(animate);
 }
 
-requestAnimationFrame(animate);
+animate();
