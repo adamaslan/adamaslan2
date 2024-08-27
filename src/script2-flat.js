@@ -26,23 +26,23 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
 // Sizes
-const sizes = {
-  width: window.innerWidth,
-  height: window.innerHeight,
-  desktopWidth: window.innerWidth * 0.2, // 1/5 of window width
-  mobileWidth: window.innerWidth * 0.9, // 90% of window width
-  mobileHeight: window.innerHeight * 0.1, // 1/10 of window height
-  aspect: 0,
-};
+// const sizes = {
+//   width: window.innerWidth,
+//   height: window.innerHeight,
+//   desktopWidth: window.innerWidth * 0.2, // 1/5 of window width
+//   mobileWidth: window.innerWidth * 0.9, // 90% of window width
+//   mobileHeight: window.innerHeight * 0.1, // 1/10 of window height
+//   aspect: 0,
+// };
 
 // Determine initial screen size
-if (window.innerWidth > 768) {
-  // Desktop
-  sizes.aspect = sizes.desktopWidth / (window.innerHeight * 0.1);
-} else {
-  // Mobile
-  sizes.aspect = sizes.mobileWidth / sizes.mobileHeight;
-}
+// if (window.innerWidth > 768) {
+//   // Desktop
+//   sizes.aspect = sizes.desktopWidth / (window.innerHeight * 0.1);
+// } else {
+//   // Mobile
+//   sizes.aspect = sizes.mobileWidth / sizes.mobileHeight;
+// }
 
 // Camera
 const camera = new THREE.PerspectiveCamera(70, sizes.aspect, 1, 1000);
@@ -58,15 +58,15 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 
-if (window.innerWidth > 768) {
-  // Desktop
-  renderer.setSize(sizes.desktopWidth, window.innerHeight * 0.1);
-} else {
-  // Mobile
-  renderer.setSize(sizes.mobileWidth, sizes.mobileHeight);
-}
+// if (window.innerWidth > 768) {
+//   // Desktop
+//   renderer.setSize(sizes.desktopWidth, window.innerHeight * 0.1);
+// } else {
+//   // Mobile
+//   renderer.setSize(sizes.mobileWidth, sizes.mobileHeight);
+// }
 
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // Animate
 const clock = new THREE.Clock();
