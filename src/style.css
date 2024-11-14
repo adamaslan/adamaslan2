@@ -8,8 +8,14 @@
 
 /* Place the sketches and apps in their respective areas */
 .sketch1-container {
-    grid-row: 2;
-    grid-column: 1; /* First column */
+  grid-row: 2;
+  grid-column: 1; /* First column */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(10deg); /* Tilt the container by 10 degrees */
+  overflow: hidden; /* Prevents any overflow from the canvas */
+  padding: 10px;
 }
 
 .sketch2-container {
@@ -22,6 +28,11 @@
     .container {
         grid-template-columns: 1fr; /* Single column */
         grid-template-rows: auto; /* Reset rows */
+    }
+    .sketch1-container {
+      grid-row: 3; /* Move to the third row on mobile */
+      grid-column: 1;
+      transform: rotate(5deg); /* Slightly less tilt on mobile */
     }
 }
 
