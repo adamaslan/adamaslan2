@@ -6,7 +6,7 @@ let sketch = (p) => {
   let speed = 6;
 
   p.setup = () => {
-    let canvas = p.createCanvas(p.windowWidth * 0.1, p.windowHeight * 0.5);
+    let canvas = p.createCanvas(p.windowWidth * 0.1, p.windowHeight * 0.8);
     canvas.center();
     p.stroke(0);
     p.strokeWeight(3);
@@ -29,7 +29,7 @@ let sketch = (p) => {
       speed = -5;
     }
     if (a <= 0) {
-      speed = 8;
+      speed = 3;
     }
     a = a + speed;
   };

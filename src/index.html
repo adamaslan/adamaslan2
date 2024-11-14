@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adam Aslan</title>
     <link rel="stylesheet" href="./style.css" />
+    <style>
+      /* Center the canvas and set a max width */
+      .webgl-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+      canvas.webgl {
+        max-width: 600px; /* Set the maximum width of the canvas */
+        width: 100%; /* Allow canvas to shrink on smaller screens */
+        height: auto; /* Maintain aspect ratio */
+      }
+    </style>
   </head>
   <body>
     <h1 class="funtext">Hiiiii</h1>
@@ -24,7 +40,114 @@
     <div class="container sketch2-container">
       <script type="module" src="./sketch2.js"></script>
     </div>
-    <script type="module" src="./script.js"></script>
+    <!-- <script type="module" src="./script.js"></script> -->
     <script type="module" src="./sketcha.js"></script>
+
+    <div> <script type="module">
+      import * as THREE from "three";
+      import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+  
+      /**
+       * Base
+       */
+      // Canvas
+      const canvas = document.querySelector("canvas.webgl");
+  
+      // Scene
+      const scene = new THREE.Scene();
+  
+      /**
+       * Object
+       */
+      const geometry = new THREE.BufferGeometry();
+      const count = 50;
+      const positionsArray = new Float32Array(count * 3 * 3);
+      for (let i = 0; i < count * 3 * 3; i++) {
+        positionsArray[i] = (Math.random() - 0.5) * 4;
+      }
+      const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3);
+      geometry.setAttribute("position", positionsAttribute);
+  
+      const material = new THREE.MeshBasicMaterial({
+        color: 0xff0000,
+        wireframe: true,
+      });
+  
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+  
+      /**
+       * Sizes
+       */
+      const sizes = {
+        width: canvas.clientWidth, // Use canvas client width
+        height: canvas.clientHeight, // Use canvas client height
+      };
+  
+      window.addEventListener("resize", () => {
+        // Update sizes
+        sizes.width = canvas.clientWidth;
+        sizes.height = canvas.clientHeight;
+  
+        // Update camera
+        camera.aspect = sizes.width / sizes.height;
+        camera.updateProjectionMatrix();
+  
+        // Update renderer
+        renderer.setSize(sizes.width, sizes.height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      });
+  
+      /**
+       * Camera
+       */
+      // Base camera
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        sizes.width / sizes.height,
+        0.1,
+        100
+      );
+      camera.position.z = 3;
+      scene.add(camera);
+  
+      // Controls
+      const controls = new OrbitControls(camera, canvas);
+      controls.enableDamping = true;
+  
+      /**
+       * Renderer
+       */
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true, // Makes background transparent
+      });
+      renderer.setSize(sizes.width, sizes.height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  
+      /**
+       * Animate
+       */
+      const clock = new THREE.Clock();
+  
+      const tick = () => {
+        const elapsedTime = clock.getElapsedTime() * 0.5; // Slow down animation
+  
+        // Update controls
+        controls.update();
+  
+        // Update mesh rotation
+        mesh.rotation.y = elapsedTime;
+  
+        // Render
+        renderer.render(scene, camera);
+  
+        // Call tick again on the next frame
+        window.requestAnimationFrame(tick);
+      };
+  
+      tick();
+    </script></div>
+
   </body>
 </html>
